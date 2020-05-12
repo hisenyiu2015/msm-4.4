@@ -486,6 +486,7 @@ void ath11k_ce_per_engine_service(struct ath11k_base *ab, u16 ce_id)
 	if (pipe->recv_cb)
 		ath11k_ce_recv_process_cb(pipe);
 }
+EXPORT_SYMBOL(ath11k_ce_per_engine_service);
 
 void ath11k_ce_poll_send_completed(struct ath11k_base *ab, u8 pipe_id)
 {
@@ -619,6 +620,7 @@ void ath11k_ce_cleanup_pipes(struct ath11k_base *ab)
 		/* NOTE: Should we also clean up tx buffer in all pipes? */
 	}
 }
+EXPORT_SYMBOL(ath11k_ce_cleanup_pipes);
 
 void ath11k_ce_rx_post_buf(struct ath11k_base *ab)
 {
@@ -642,6 +644,7 @@ void ath11k_ce_rx_post_buf(struct ath11k_base *ab)
 		}
 	}
 }
+EXPORT_SYMBOL(ath11k_ce_rx_post_buf);
 
 void ath11k_ce_rx_replenish_retry(struct timer_list *t)
 {
@@ -752,6 +755,7 @@ void ath11k_ce_free_pipes(struct ath11k_base *ab)
 		}
 	}
 }
+EXPORT_SYMBOL(ath11k_ce_free_pipes);
 
 int ath11k_ce_alloc_pipes(struct ath11k_base *ab)
 {
@@ -779,6 +783,7 @@ int ath11k_ce_alloc_pipes(struct ath11k_base *ab)
 
 	return 0;
 }
+EXPORT_SYMBOL(ath11k_ce_alloc_pipes);
 
 /* For Big Endian Host, Copy Engine byte_swap is enabled
  * When Copy Engine does byte_swap, need to byte swap again for the
@@ -806,3 +811,4 @@ int ath11k_ce_get_attr_flags(int ce_id)
 
 	return host_ce_config_wlan[ce_id].flags;
 }
+EXPORT_SYMBOL(ath11k_ce_get_attr_flags);

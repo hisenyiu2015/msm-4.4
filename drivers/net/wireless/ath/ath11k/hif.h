@@ -3,7 +3,8 @@
  * Copyright (c) 2019-2020 The Linux Foundation. All rights reserved.
  */
 
-#include "core.h"
+#ifndef _HIF_H_
+#define _HIF_H_
 
 struct ath11k_hif_ops {
 	u32 (*read32)(struct ath11k_base *sc, u32 address);
@@ -63,3 +64,4 @@ static inline int ath11k_hif_map_service_to_pipe(struct ath11k_base *sc, u16 ser
 {
 	return sc->hif.ops->map_service_to_pipe(sc, service_id, ul_pipe, dl_pipe);
 }
+#endif /* _HIF_H_ */

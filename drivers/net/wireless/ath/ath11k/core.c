@@ -14,6 +14,7 @@
 #include "hif.h"
 
 unsigned int ath11k_debug_mask;
+EXPORT_SYMBOL(ath11k_debug_mask);
 module_param_named(debug_mask, ath11k_debug_mask, uint, 0644);
 MODULE_PARM_DESC(debug_mask, "Debugging mask");
 
@@ -25,6 +26,59 @@ static const struct ath11k_hw_params ath11k_hw_params = {
 		.cal_size =  IPQ8074_MAX_CAL_DATA_SZ,
 	},
 };
+
+const u8 ath11k_tx_ring_mask[ATH11K_EXT_IRQ_GRP_NUM_MAX] = {
+	ATH11K_TX_RING_MASK_0,
+	ATH11K_TX_RING_MASK_1,
+	ATH11K_TX_RING_MASK_2,
+};
+EXPORT_SYMBOL(ath11k_tx_ring_mask);
+
+const u8 ath11k_rx_mon_status_ring_mask[ATH11K_EXT_IRQ_GRP_NUM_MAX] = {
+	0, 0, 0, 0,
+	ATH11K_RX_MON_STATUS_RING_MASK_0,
+	ATH11K_RX_MON_STATUS_RING_MASK_1,
+	ATH11K_RX_MON_STATUS_RING_MASK_2,
+};
+EXPORT_SYMBOL(ath11k_rx_mon_status_ring_mask);
+
+const u8 ath11k_rx_ring_mask[ATH11K_EXT_IRQ_GRP_NUM_MAX] = {
+	0, 0, 0, 0, 0, 0, 0,
+	ATH11K_RX_RING_MASK_0,
+	ATH11K_RX_RING_MASK_1,
+	ATH11K_RX_RING_MASK_2,
+	ATH11K_RX_RING_MASK_3,
+};
+EXPORT_SYMBOL(ath11k_rx_ring_mask);
+
+const u8 ath11k_rx_err_ring_mask[ATH11K_EXT_IRQ_GRP_NUM_MAX] = {
+	ATH11K_RX_ERR_RING_MASK_0,
+};
+EXPORT_SYMBOL(ath11k_rx_err_ring_mask);
+
+const u8 ath11k_rx_wbm_rel_ring_mask[ATH11K_EXT_IRQ_GRP_NUM_MAX] = {
+	ATH11K_RX_WBM_REL_RING_MASK_0,
+};
+EXPORT_SYMBOL(ath11k_rx_wbm_rel_ring_mask);
+
+const u8 ath11k_reo_status_ring_mask[ATH11K_EXT_IRQ_GRP_NUM_MAX] = {
+	ATH11K_REO_STATUS_RING_MASK_0,
+};
+EXPORT_SYMBOL(ath11k_reo_status_ring_mask);
+
+const u8 ath11k_rxdma2host_ring_mask[ATH11K_EXT_IRQ_GRP_NUM_MAX] = {
+	ATH11K_RXDMA2HOST_RING_MASK_0,
+	ATH11K_RXDMA2HOST_RING_MASK_1,
+	ATH11K_RXDMA2HOST_RING_MASK_2,
+};
+EXPORT_SYMBOL(ath11k_rxdma2host_ring_mask);
+
+const u8 ath11k_host2rxdma_ring_mask[ATH11K_EXT_IRQ_GRP_NUM_MAX] = {
+	ATH11K_HOST2RXDMA_RING_MASK_0,
+	ATH11K_HOST2RXDMA_RING_MASK_1,
+	ATH11K_HOST2RXDMA_RING_MASK_2,
+};
+EXPORT_SYMBOL(ath11k_host2rxdma_ring_mask);
 
 /* Map from pdev index to hw mac index */
 u8 ath11k_core_get_hw_mac_id(struct ath11k_base *ab, int pdev_idx)
@@ -735,6 +789,7 @@ int ath11k_core_init(struct ath11k_base *ab)
 
 	return 0;
 }
+EXPORT_SYMBOL(ath11k_core_init);
 
 void ath11k_core_deinit(struct ath11k_base *ab)
 {
@@ -749,11 +804,13 @@ void ath11k_core_deinit(struct ath11k_base *ab)
 	ath11k_mac_destroy(ab);
 	ath11k_core_soc_destroy(ab);
 }
+EXPORT_SYMBOL(ath11k_core_deinit);
 
 void ath11k_core_free(struct ath11k_base *ab)
 {
 	kfree(ab);
 }
+EXPORT_SYMBOL(ath11k_core_free);
 
 struct ath11k_base *ath11k_core_alloc(struct device *dev, size_t priv_size,
 				      enum ath11k_bus bus)
@@ -786,3 +843,7 @@ err_sc_free:
 	kfree(ab);
 	return NULL;
 }
+EXPORT_SYMBOL(ath11k_core_alloc);
+
+MODULE_DESCRIPTION("Core module for Qualcomm Atheros 802.11ax wireless LAN cards.");
+MODULE_LICENSE("Dual BSD/GPL");
